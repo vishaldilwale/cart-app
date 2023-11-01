@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LoaderWrapper = styled.div`
-position: absolute;
+position: fixed;
 height: 100vh;
 width: 100vw;
 display:flex;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProductInterface } from '../../constants/interface';
 import { TEXT } from '../../constants/text';
-import { getTrimmedText } from '../../utils';
+import { getFixedDigit, getTrimmedText } from '../../utils';
 import { AddToCartBtn, Button, CardActionWrapper, CardActionWrapperCart, CardImg, CardWrapper, FlexBox, QuantityIconBtn, QuantityValueWrapper, QuantityWrapper, WidthWrapper } from './style';
 
 interface ProductCardProps {
@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartClick, ca
                 </WidthWrapper>
                 <WidthWrapper width='70%'>
                     <h4 title={title}>{getTrimmedText(title, 25)}</h4>
-                    <h3>&#8377; {price}</h3>
+                    <h3>&#8377; {getFixedDigit(price)}</h3>
                 </WidthWrapper>
             </FlexBox>
             <hr />

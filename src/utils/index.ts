@@ -10,13 +10,11 @@ export const getTrimmedText = (text: string, maxLength = 0) => {
     }
 }
 
+export const getFixedDigit=(value:number,fixedTo=2)=>{
+    return value.toFixed(fixedTo);
+}
+
 export const getCartTotalValue = (list:ProductInterface[]) => {
-    let totalPrice = 0;
-    list.forEach((p:ProductInterface) => {
-        const price = p.price;
-        const quantity = p.quantity || 0;
-        const totalProductPrice = price * quantity;
-        totalPrice += totalProductPrice
-    });
-    return totalPrice.toFixed(2)
+    const totalPrice = list.reduce((p,product)=>p+(product?.price * product?.quantity!),0);
+    return getFixedDigit(totalPrice)
 };

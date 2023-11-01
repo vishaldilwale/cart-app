@@ -11,14 +11,13 @@ import { TitleWrapper } from './style';
 import { API } from '../../constants/api';
 import { TEXT } from '../../constants/text';
 import { ProductInterface } from '../../constants/interface';
+import ScrollHook from '../../hooks/InfiniteScroll/ScrollHook';
 
 const ProductList: React.FC = () => {
   const state = useSelector((state: any) => state.productsReducer);
   const cartState = useSelector((state: any) => state.cartReducer);
-  const loaderState = useSelector((state: any) => state.loaderReducer);
   const { productList } = state;
   const { cartList } = cartState;
-  const { loading } = loaderState;
   const dispatch = useDispatch();
   const [limit, setLimit] = useState<number>(5);
   const totalProducts = 20;
@@ -51,24 +50,12 @@ const ProductList: React.FC = () => {
     }
   };
 
-  const handleScroll = () => {
-    const screenHeight = window.innerHeight + document.documentElement.scrollTop - 10;
-    const docHeight = document.documentElement.offsetHeight - 10;
-    const fetch = Math.abs(screenHeight - docHeight) < 5;
-    if (!fetch || loading) {
-      return;
-    }
-    const newLimit = limit + 5;
+  const onScrollNext=()=>{
+        const newLimit = limit + 5;
     if (newLimit <= totalProducts) {
       getProductListFromAPI(newLimit);
     }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+  }
 
   return (
     <>
@@ -76,6 +63,7 @@ const ProductList: React.FC = () => {
         <h2>{TEXT.product.list}</h2>
         <span>Showing {productList?.length} of {totalProducts}</span>
       </TitleWrapper>
+      <ScrollHook onScrollNext={onScrollNext}>
       {productList?.map((product: ProductInterface) => {
         const isPresentInCart = cartList?.find((cartItem: ProductInterface) => cartItem?.id === product?.id);
         const cartBtnText = isPresentInCart ? TEXT.product.card.goToCartText : TEXT.product.card.addToCartText;
@@ -83,6 +71,7 @@ const ProductList: React.FC = () => {
           <ProductCard key={product.id} product={product} cartBtnText={cartBtnText} onAddToCartClick={handleAddToCart} />
         )
       })}
+      </ScrollHook>
     </>
   );
 };
