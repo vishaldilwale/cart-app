@@ -1,0 +1,27 @@
+// export const productActions={
+//   ADD_TO_CART:'ADD_TO_CART',
+//   REMOVE_FROM_CART:'REMOVE_FROM_CART',
+//   UPDATE_ITEM_COUNT:'UPDATE_ITEM_COUNT',
+//   SET_PRODUCT_LIST:'SET_PRODUCT_LIST'
+// }
+
+// export const addToCart = (product:any) => ({
+//     type: productActions.ADD_TO_CART,
+//     product,
+//   });
+  
+//   export const removeFromCart = (productId:any) => ({
+//     type: productActions.REMOVE_FROM_CART,
+//     productId,
+//   });
+
+//   export const updateItemCount = (productId:any) => ({
+//     type: productActions.UPDATE_ITEM_COUNT,
+//     productId,
+//   });
+
+//   export const setProductList = (payload:any) => ({
+//     type: productActions.SET_PRODUCT_LIST,
+//     payload,
+//   });
+
