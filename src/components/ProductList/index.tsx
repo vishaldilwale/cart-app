@@ -50,8 +50,8 @@ const ProductList: React.FC = () => {
     }
   };
 
-  const onScrollNext=()=>{
-        const newLimit = limit + 5;
+  const onScrollNext = () => {
+    const newLimit = limit + 5;
     if (newLimit <= totalProducts) {
       getProductListFromAPI(newLimit);
     }
@@ -64,13 +64,13 @@ const ProductList: React.FC = () => {
         <span>Showing {productList?.length} of {totalProducts}</span>
       </TitleWrapper>
       <ScrollHook onScrollNext={onScrollNext}>
-      {productList?.map((product: ProductInterface) => {
-        const isPresentInCart = cartList?.find((cartItem: ProductInterface) => cartItem?.id === product?.id);
-        const cartBtnText = isPresentInCart ? TEXT.product.card.goToCartText : TEXT.product.card.addToCartText;
-        return (
-          <ProductCard key={product.id} product={product} cartBtnText={cartBtnText} onAddToCartClick={handleAddToCart} />
-        )
-      })}
+        {productList?.map((product: ProductInterface) => {
+          const isPresentInCart = cartList?.find((cartItem: ProductInterface) => cartItem?.id === product?.id);
+          const cartBtnText = isPresentInCart ? TEXT.product.card.goToCartText : TEXT.product.card.addToCartText;
+          return (
+            <ProductCard key={product.id} product={product} cartBtnText={cartBtnText} onAddToCartClick={handleAddToCart} />
+          )
+        })}
       </ScrollHook>
     </>
   );
