@@ -44,7 +44,7 @@ const CartList: React.FC = () => {
                 <span>{TEXT.cart.totalAmount} : &#8377; <b>{getCartTotalValue(cartList)}</b></span>
             </TitleWrapper>
             <CartWrapper>
-                {cartList?.map((product: any) => (
+                {cartList?.map((product: ProductInterface) => (
                     <ProductCard key={product.id} product={product} onCartRemove={handleRemoveFromCart} onQuantityAdd={onQuantityAdd} onQuantityRemove={onQuantityRemove} />
                 ))}
             </CartWrapper>

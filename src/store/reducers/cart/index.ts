@@ -1,4 +1,4 @@
-import { ReduxAction } from "../../../constants/interface";
+import { ProductInterface, ReduxAction } from "../../../constants/interface";
 import { cartActions } from "../../actions/cart";
 
 const initialState = {
@@ -11,7 +11,7 @@ const cartReducer = (state = initialState, action: ReduxAction) => {
         case cartActions.ADD_TO_CART:
             return { ...state, cartList: [...state.cartList, payload] };
         case cartActions.REMOVE_FROM_CART:
-            return { ...state, cartList: state.cartList?.filter((item: any) => item.id !== payload.id) };
+            return { ...state, cartList: state.cartList?.filter((product: ProductInterface) => product.id !== payload.id) };
         case cartActions.UPDATE_ITEM_COUNT:
             return { ...state, cartList: payload };
         default:

@@ -12,9 +12,9 @@ export const getTrimmedText = (text: string, maxLength = 0) => {
 
 export const getCartTotalValue = (list:ProductInterface[]) => {
     let totalPrice = 0;
-    list.forEach((c:any) => {
-        const price = c.price;
-        const quantity = c.quantity;
+    list.forEach((p:ProductInterface) => {
+        const price = p.price;
+        const quantity = p.quantity || 0;
         const totalProductPrice = price * quantity;
         totalPrice += totalProductPrice
     });

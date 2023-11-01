@@ -8,9 +8,9 @@ interface ProductCardProps {
     onAddToCartClick?: (p:ProductInterface)=>void;
     product: ProductInterface;
     cartBtnText?: string;
-    onQuantityAdd?: any;
-    onQuantityRemove?: any;
-    onCartRemove?: any
+    onQuantityAdd?: (p:ProductInterface)=>void;
+    onQuantityRemove?: (p:ProductInterface)=>void;
+    onCartRemove?: (p:ProductInterface)=>void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartClick, cartBtnText = TEXT.product.card.addToCartText, onQuantityAdd, onQuantityRemove, onCartRemove }) => {
@@ -18,13 +18,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCartClick, ca
 
     const cartAction = (
         <CardActionWrapperCart>
-            <Button width='50%' height='50px' onClick={() => onCartRemove(product)}>{TEXT.cart.removeFromCartText}</Button>
+            <Button width='50%' height='50px' onClick={() => onCartRemove && onCartRemove(product)}>{TEXT.cart.removeFromCartText}</Button>
             <QuantityWrapper>
-                <QuantityIconBtn onClick={() => onQuantityRemove(product)}>{'-'}</QuantityIconBtn>
+                <QuantityIconBtn onClick={() => onQuantityRemove && onQuantityRemove(product)}>{'-'}</QuantityIconBtn>
                 <QuantityValueWrapper>
                     <h4 title={description}>{product?.quantity}</h4>
                 </QuantityValueWrapper>
-                <QuantityIconBtn onClick={() => onQuantityAdd(product)}>{'+'}</QuantityIconBtn>
+                <QuantityIconBtn onClick={() =>onQuantityAdd && onQuantityAdd(product)}>{'+'}</QuantityIconBtn>
             </QuantityWrapper>
         </CardActionWrapperCart>
     );
